@@ -1,6 +1,7 @@
 from enum import Enum
+from typing import Type
 
-from algorithm.strategies import SortingStrategy, SubtractionStrategy
+from algorithm.strategies import SortingStrategy, SubtractionStrategy, IStrategy
 
 
 class Strategy(Enum):
@@ -14,5 +15,9 @@ class Strategy(Enum):
                 return member
 
 
-StrategyEnumToClassMapping = {Strategy.SORTING: SortingStrategy,
-                              Strategy.SUBTRACTION: SubtractionStrategy}
+StrategyMapping = {Strategy.SORTING: SortingStrategy,
+                   Strategy.SUBTRACTION: SubtractionStrategy}
+
+
+def get_strategy_class(strategy: Strategy) -> Type[IStrategy]:
+    return StrategyMapping[strategy]
