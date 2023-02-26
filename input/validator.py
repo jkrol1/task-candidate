@@ -11,11 +11,11 @@ class IValidator(ABC):
 
 
 class Validator(IValidator):
-    def __init__(self, parsed_data: ParsedData, sum_target: int) -> None:
+    def __init__(self, parsed_data: ParsedData, target_sum: int) -> None:
         self._parsed_data = parsed_data
-        self._sum_target = sum_target
+        self._target_sum = target_sum
 
     def validate(self) -> None:
         for number in self._parsed_data:
-            if not 0 <= number <= self._sum_target:
+            if not 0 <= number <= self._target_sum:
                 raise ValidationError(f"Number {number} is not in allowed threshold")
