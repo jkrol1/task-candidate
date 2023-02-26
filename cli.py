@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 
-def create_parser() -> ArgumentParser:
+def create_cli_parser() -> ArgumentParser:
     parser = ArgumentParser(
         description="Application for finding pairs of natural numbers which add up to specified target sum"
     )
