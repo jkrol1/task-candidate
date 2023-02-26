@@ -3,7 +3,7 @@ from input.parser import ParsedData
 
 
 class SubtractionStrategy(IStrategy):
-    def get_pairs_from_given_data_and_sum_target(
+    def get_pairs_from_given_data_and_target_sum(
         self, data: ParsedData, sum_target: int
     ) -> Result:
         found_pairs = []

@@ -9,8 +9,8 @@ Result = Optional[List[Pair]]
 
 class IStrategy(ABC):
     @abstractmethod
-    def get_pairs_from_given_data_and_sum_target(
-        self, data: ParsedData, sum_target: int
+    def get_pairs_from_given_data_and_target_sum(
+        self, data: ParsedData, target_sum: int
     ) -> Result:
         pass
 
