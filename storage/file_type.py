@@ -22,7 +22,7 @@ FileTypeReaderMapping = {FileType.TXT: TxtFileReader}
 FileTypeWriterMapping = {FileType.TXT: TxtFileWriter}
 
 
-def get_file_reader_and_writer_class_for_given_input_and_output_type(
+def get_reader_and_writer_class_for_given_input_and_output_file_type(
     input_file_type: FileType, output_file_type: FileType
 ) -> Tuple[Type[IFileReader], Type[IFileWriter]]:
     reader = FileTypeReaderMapping[input_file_type]
