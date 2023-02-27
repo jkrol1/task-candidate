@@ -8,7 +8,7 @@ AlgorithmOutput = List[Optional[Pair]]
 
 class IStrategy(ABC):
     @abstractmethod
-    def get_pairs_from_parsed_data_and_target_sum(
+    def get_pairs_from_algorithm_input_and_target_sum(
         self, algorithm_input: AlgorithmInput, target_sum: int
     ) -> AlgorithmOutput:
         pass
