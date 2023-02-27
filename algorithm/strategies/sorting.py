@@ -1,16 +1,15 @@
-from algorithm.strategies.base import IStrategy, Result, create_pair_from_values
-from input.parser import ParsedData
+from algorithm.strategies.base import IStrategy, AlgorithmInput, AlgorithmOutput, create_pair_from_values
 
 
 class SortingStrategy(IStrategy):
     def get_pairs_from_parsed_data_and_target_sum(
-        self, data: ParsedData, sum_target: int
-    ) -> Result:
+        self, algorithm_input: AlgorithmInput, sum_target: int
+    ) -> AlgorithmOutput:
         found_pairs = []
-        data.sort()
-        lower_idx, higher_idx = 0, len(data) - 1
+        algorithm_input.sort()
+        lower_idx, higher_idx = 0, len(algorithm_input) - 1
         while lower_idx < higher_idx:
-            lower_value, higher_value = data[lower_idx], data[higher_idx]
+            lower_value, higher_value = algorithm_input[lower_idx], algorithm_input[higher_idx]
             if lower_value + higher_value == sum_target:
                 pair = create_pair_from_values(lower_value, higher_value)
                 found_pairs.append(pair)

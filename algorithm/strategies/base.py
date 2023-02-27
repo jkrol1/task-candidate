@@ -1,17 +1,16 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional, Tuple
 
-from input.parser import ParsedData
-
 Pair = Tuple[int, int]
-Result = Optional[List[Pair]]
+AlgorithmInput = List[int]
+AlgorithmOutput = List[Optional[Pair]]
 
 
 class IStrategy(ABC):
     @abstractmethod
     def get_pairs_from_parsed_data_and_target_sum(
-        self, data: ParsedData, target_sum: int
-    ) -> Result:
+        self, algorithm_input: AlgorithmInput, target_sum: int
+    ) -> AlgorithmOutput:
         pass
 
 

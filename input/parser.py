@@ -1,14 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import List
 
+from algorithm.strategies.base import AlgorithmInput
 from input.exceptions import ParserError
-
-ParsedData = List[int]
 
 
 class IParser(ABC):
     @abstractmethod
-    def parse(self) -> ParsedData:
+    def parse(self) -> AlgorithmInput:
         pass
 
 
@@ -20,7 +18,7 @@ class CommaSeparatedInputParser(IParser):
     def raw(self) -> str:
         return self._raw
 
-    def parse(self) -> ParsedData:
+    def parse(self) -> AlgorithmInput:
         try:
             return [int(value) for value in self._raw.split(",")]
         except ValueError:
