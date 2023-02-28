@@ -1,7 +1,6 @@
 from enum import Enum
-from typing import Type
 
-from algorithm.strategies import IStrategy, SortingStrategy, SubtractionStrategy
+from algorithm.strategies import SortingStrategy, SubtractionStrategy
 
 
 class Strategy(Enum):
