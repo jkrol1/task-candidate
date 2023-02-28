@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import Union
+
+from algorithm.strategies.base import AlgorithmInput
 
 
 class IFileReader(ABC):
     @abstractmethod
-    def read(self, path: str) -> Union[bytes, str]:
+    def read(self, path: str) -> AlgorithmInput:
         pass
