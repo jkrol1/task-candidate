@@ -3,9 +3,10 @@ from enum import Enum
 from algorithm.strategies import SortingStrategy, SubtractionStrategy
 
 
-class Strategy(Enum):
-    SORTING = "sorting"
-    SUBTRACTION = "subtraction"
+class BaseEnum(Enum):
+    @classmethod
+    def values_to_list(cls):
+        return list(map(lambda c: c.value, cls))
 
     @classmethod
     def _missing_(cls, name):
@@ -15,6 +16,11 @@ class Strategy(Enum):
                 or member.name.upper() == name.upper()
             ):
                 return member
+
+
+class Strategy(BaseEnum):
+    SORTING = "sorting"
+    SUBTRACTION = "subtraction"
 
 
 StrategyMapping = {
