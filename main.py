@@ -1,10 +1,13 @@
-from app import create_app
+from typing import List, Optional
+
+from app import Context, create_app
 from cli import create_cli_parser
 
 
-def main():
+def main(args: Optional[List[str]] = None) -> None:
     cli_parser = create_cli_parser()
-    context = cli_parser.create_app_context()
+    parsed_args = cli_parser.parse_args(args)
+    context = Context.from_parsed_args(parsed_args)
     app = create_app(context)
     app.run()
 
