@@ -9,7 +9,7 @@ def cli_parser():
 
 
 @pytest.fixture
-def open_mock_with_read_data(mocker):
+def open_mock_with_set_read_data(mocker):
     def wrapper(file_content):
         mocked_read_data = mocker.mock_open(read_data=file_content)
         mocker.patch("builtins.open", mocked_read_data)
