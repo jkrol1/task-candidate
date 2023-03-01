@@ -5,14 +5,18 @@ from config import STRATEGIES, DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
 
 class TargetSumAction(Action):
     def __call__(self, parser, namespace, values, option_string=None):
+        target_sum = self._get_target_sum_from_values_or_raise_parser_error(values, parser)
+        setattr(namespace, self.dest, target_sum)
+
+    def _get_target_sum_from_values_or_raise_parser_error(self, values, parser):
         argument = "/".join(self.option_strings)
         try:
-            int_value = int(values)
-            if int_value < 0:
+            target_sum = int(values)
+            if target_sum < 0:
                 parser.error(
-                    f"argument {argument}: invalid value: '{int_value}'. Target sum has to be >= 0"
+                    f"argument {argument}: invalid value: '{target_sum}'. Target sum has to be >= 0"
                 )
-            setattr(namespace, self.dest, int_value)
+            return target_sum
         except ValueError:
             parser.error(f"argument {argument}: invalid int value: '{values}'")
 
