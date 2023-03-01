@@ -30,20 +30,24 @@ def test_create_cli_parser(cli_parser):
 
 @pytest.mark.parametrize("args, expected_error_msg", ARGS_EXPECTED_ERROR_MSG)
 def test_cli_parser_with_invalid_args_input(
-    args, expected_error_msg, parse_cli_args_with_system_exit_handling, capsys
+        args, expected_error_msg, cli_parser, capsys
 ):
-    parse_cli_args_with_system_exit_handling(args)
+    try:
+        cli_parser.parse_args(args)
+    except SystemExit:
+        pass
+
     captured = capsys.readouterr()
 
     assert expected_error_msg in captured.err
 
 
-def test_cli_parser(parse_cli_args_with_system_exit_handling):
+def test_cli_parser(cli_parser):
     input_file_path = "input_file.txt"
     output_file_path = "output_file.txt"
     strategy = "sorting"
     target_sum = "15"
-    parsed_args = parse_cli_args_with_system_exit_handling(
+    parsed_args = cli_parser.parse_args(
         [
             "-i",
             input_file_path,
@@ -62,8 +66,8 @@ def test_cli_parser(parse_cli_args_with_system_exit_handling):
     assert parsed_args.target_sum == int(target_sum)
 
 
-def test_cli_parser_default_args(parse_cli_args_with_system_exit_handling):
-    parsed_args = parse_cli_args_with_system_exit_handling(
+def test_cli_parser_default_args(cli_parser):
+    parsed_args = cli_parser.parse_args(
         ["-i", "test.txt", "-o", "test_output.txt"]
     )
 

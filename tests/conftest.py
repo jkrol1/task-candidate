@@ -12,18 +12,6 @@ def cli_parser():
 
 
 @pytest.fixture
-def parse_cli_args_with_system_exit_handling(cli_parser):
-    def wrapper(args):
-        try:
-            args = cli_parser.parse_args(args)
-        except SystemExit:
-            pass
-        return args
-
-    return wrapper
-
-
-@pytest.fixture
 def context():
     return Context(
         input_file_path="input.txt",
