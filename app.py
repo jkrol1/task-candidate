@@ -26,7 +26,7 @@ class Context:
     target_sum: int
 
     @classmethod
-    def from_parsed_args(cls, parsed_args: Namespace) -> Context:
+    def from_parsed_cli_args(cls, parsed_args: Namespace) -> Context:
         input_file_type = FileType.from_path(parsed_args.input_file_path)
         output_file_type = FileType.from_path(parsed_args.output_file_path)
         strategy = Strategy(parsed_args.strategy)
