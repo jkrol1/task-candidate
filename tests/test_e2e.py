@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Callable
 
 import pytest
 
@@ -13,7 +14,7 @@ STRATEGY_EXPECTED_OUTPUT_FILE_CONTENT = [
 
 
 @pytest.mark.parametrize("strategy, expected_output_file_content", STRATEGY_EXPECTED_OUTPUT_FILE_CONTENT)
-def test_main_with_txt_file(tmp_txt_file: Path, strategy: str, expected_output_file_content: str) -> None:
+def test_main_with_txt_file(tmp_txt_file: Callable[[str], Path], strategy: str, expected_output_file_content: str) -> None:
     file = tmp_txt_file(INITIAL_FILE_CONTENT)
     file_path = str(file)
     main(["-i", file_path, "-o", file_path, "-s", strategy])

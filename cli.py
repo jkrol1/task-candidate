@@ -1,10 +1,12 @@
-from argparse import Action, ArgumentParser
+from argparse import Action, ArgumentParser, Namespace
+from typing import Optional, Union, Sequence
 
 from config import STRATEGIES, DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
 
 
 class TargetSumAction(Action):
-    def __call__(self, parser, namespace, values, option_string=None):
+    def __call__(self, parser: ArgumentParser, namespace: Namespace, values: Union[str, Sequence, None],
+                 option_string: Optional[str] = None) -> None:
         target_sum = self._get_target_sum_from_values_or_raise_parser_error(values, parser)
         setattr(namespace, self.dest, target_sum)
 
