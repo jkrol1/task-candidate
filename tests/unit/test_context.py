@@ -1,10 +1,12 @@
+from argparse import ArgumentParser
+
 from algorithm.strategy_mapping import Strategy
 from app import Context
 from config import DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
 from storage.file_type_mapping import FileType
 
 
-def test_create_context_from_parsed_cli_args(cli_parser):
+def test_create_context_from_parsed_cli_args(cli_parser: ArgumentParser) -> None:
     input_file_path = "input.txt"
     output_file_path = "output.txt"
     parsed_cli_args = cli_parser.parse_args(["-i", input_file_path, "-o", output_file_path])

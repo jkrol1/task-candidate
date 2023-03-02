@@ -1,6 +1,11 @@
+from typing import List, Generator
+
 import pytest
 
 from argparse import ArgumentParser
+
+from _pytest.capture import CaptureFixture
+
 from config import DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
 
 ARGS_EXPECTED_ERROR_MSG = [
@@ -21,7 +26,7 @@ ARGS_EXPECTED_ERROR_MSG = [
 ]
 
 
-def test_create_cli_parser(cli_parser):
+def test_create_cli_parser(cli_parser: ArgumentParser) -> None:
     expected_description = "Application for finding pairs of natural numbers which add up to specified target sum"
 
     assert isinstance(cli_parser, ArgumentParser)
@@ -30,8 +35,9 @@ def test_create_cli_parser(cli_parser):
 
 @pytest.mark.parametrize("args, expected_error_msg", ARGS_EXPECTED_ERROR_MSG)
 def test_cli_parser_with_invalid_args_input(
-        args, expected_error_msg, cli_parser, capsys
-):
+        args: List[str], expected_error_msg: str, cli_parser: ArgumentParser,
+        capsys: CaptureFixture[str]
+) -> None:
     try:
         cli_parser.parse_args(args)
     except SystemExit:
@@ -42,7 +48,7 @@ def test_cli_parser_with_invalid_args_input(
     assert expected_error_msg in captured.err
 
 
-def test_cli_parser(cli_parser):
+def test_cli_parser(cli_parser: ArgumentParser) -> None:
     input_file_path = "input_file.txt"
     output_file_path = "output_file.txt"
     strategy = "sorting"
@@ -66,7 +72,7 @@ def test_cli_parser(cli_parser):
     assert parsed_args.target_sum == int(target_sum)
 
 
-def test_cli_parser_default_args(cli_parser):
+def test_cli_parser_default_args(cli_parser: ArgumentParser) -> None:
     parsed_args = cli_parser.parse_args(
         ["-i", "test.txt", "-o", "test_output.txt"]
     )

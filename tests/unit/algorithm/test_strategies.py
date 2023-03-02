@@ -1,6 +1,7 @@
 import pytest
 
 from algorithm.strategies import SortingStrategy, SubtractionStrategy
+from algorithm.strategies.base import AlgorithmInput, AlgorithmOutput
 
 SUBTRACTION_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM = [
     (
@@ -61,7 +62,8 @@ SORTING_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM = [
 
 @pytest.mark.parametrize("algorithm_input, expected_algorithm_output, target_sum",
                          SUBTRACTION_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM)
-def test_subtraction_strategy(algorithm_input, expected_algorithm_output, target_sum):
+def test_subtraction_strategy(algorithm_input: AlgorithmInput, expected_algorithm_output: AlgorithmOutput,
+                              target_sum: int) -> None:
     strategy = SubtractionStrategy()
     algorithm_output = strategy.get_pairs_from_algorithm_input_and_target_sum(algorithm_input, target_sum)
 
@@ -70,7 +72,8 @@ def test_subtraction_strategy(algorithm_input, expected_algorithm_output, target
 
 @pytest.mark.parametrize("algorithm_input, expected_algorithm_output, target_sum",
                          SORTING_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM)
-def test_sorting_strategy(algorithm_input, expected_algorithm_output, target_sum):
+def test_sorting_strategy(algorithm_input: AlgorithmInput, expected_algorithm_output: AlgorithmOutput,
+                          target_sum: int) -> None:
     strategy = SortingStrategy()
     algorithm_output = strategy.get_pairs_from_algorithm_input_and_target_sum(algorithm_input, target_sum)
 
