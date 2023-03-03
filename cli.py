@@ -5,9 +5,16 @@ from config import STRATEGIES, DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
 
 
 class TargetSumAction(Action):
-    def __call__(self, parser: ArgumentParser, namespace: Namespace, values: Union[str, Sequence, None],
-                 option_string: Optional[str] = None) -> None:
-        target_sum = self._get_target_sum_from_values_or_raise_parser_error(values, parser)
+    def __call__(
+        self,
+        parser: ArgumentParser,
+        namespace: Namespace,
+        values: Union[str, Sequence, None],
+        option_string: Optional[str] = None,
+    ) -> None:
+        target_sum = self._get_target_sum_from_values_or_raise_parser_error(
+            values, parser
+        )
         setattr(namespace, self.dest, target_sum)
 
     def _get_target_sum_from_values_or_raise_parser_error(self, values, parser):

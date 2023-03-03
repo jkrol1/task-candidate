@@ -35,8 +35,10 @@ def test_create_cli_parser(cli_parser: ArgumentParser) -> None:
 
 @pytest.mark.parametrize("args, expected_error_msg", ARGS_EXPECTED_ERROR_MSG)
 def test_cli_parser_with_invalid_args_input(
-        args: List[str], expected_error_msg: str, cli_parser: ArgumentParser,
-        capsys: CaptureFixture[str]
+    args: List[str],
+    expected_error_msg: str,
+    cli_parser: ArgumentParser,
+    capsys: CaptureFixture[str],
 ) -> None:
     try:
         cli_parser.parse_args(args)
@@ -73,9 +75,7 @@ def test_cli_parser(cli_parser: ArgumentParser) -> None:
 
 
 def test_cli_parser_default_args(cli_parser: ArgumentParser) -> None:
-    parsed_args = cli_parser.parse_args(
-        ["-i", "test.txt", "-o", "test_output.txt"]
-    )
+    parsed_args = cli_parser.parse_args(["-i", "test.txt", "-o", "test_output.txt"])
 
     assert parsed_args.strategy == DEFAULT_STRATEGY
     assert parsed_args.target_sum == DEFAULT_TARGET_SUM
