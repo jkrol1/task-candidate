@@ -1,9 +1,7 @@
-from typing import List, Generator
+from argparse import ArgumentParser
+from typing import Generator, List
 
 import pytest
-
-from argparse import ArgumentParser
-
 from _pytest.capture import CaptureFixture
 
 from config import DEFAULT_STRATEGY, DEFAULT_TARGET_SUM

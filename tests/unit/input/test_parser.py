@@ -1,7 +1,7 @@
 import pytest
 
-from input.parser import parse_comma_separated_input_data
 from input.exceptions import ParserError
+from input.parser import parse_comma_separated_input_data
 
 
 def test_parse_comma_separated_input_data() -> None:

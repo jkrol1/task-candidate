@@ -1,7 +1,7 @@
 from argparse import Action, ArgumentParser, Namespace
-from typing import Optional, Union, Sequence
+from typing import Optional, Sequence, Union
 
-from config import STRATEGIES, DEFAULT_STRATEGY, DEFAULT_TARGET_SUM
+from config import DEFAULT_STRATEGY, DEFAULT_TARGET_SUM, STRATEGIES
 
 
 class TargetSumAction(Action):

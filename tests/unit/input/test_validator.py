@@ -1,7 +1,7 @@
 import pytest
 
-from input.validator import Validator
 from input.exceptions import ValidationError
+from input.validator import Validator
 
 
 def test_validator() -> None:
