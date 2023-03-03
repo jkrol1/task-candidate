@@ -6,7 +6,7 @@ from algorithm.strategies.base import AlgorithmInput, AlgorithmOutput
 SUBTRACTION_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM = [
     (
         [4, 8, 9, 0, 12, 1, 4, 2, 12, 12, 4, 4, 8, 11, 12, 0],
-        [(0, 12), (4, 8), (4, 8), (1, 11), (0, 12)],
+        [(4, 8), (0, 12), (4, 8), (1, 11), (0, 12)],
         12
     ),
     (

@@ -8,7 +8,7 @@ from main import main
 
 INITIAL_FILE_CONTENT = "10,2,3,4,5,6,7,12,0,4,8,4,8"
 STRATEGY_EXPECTED_OUTPUT_FILE_CONTENT = [
-    (Strategy.SUBTRACTION.value, "[(5, 7), (0, 12), (4, 8), (4, 8)]"),
+    (Strategy.SUBTRACTION.value, "[(2, 10), (5, 7), (0, 12), (4, 8), (4, 8)]"),
     (Strategy.SORTING.value, "[(0, 12), (2, 10), (4, 8), (4, 8), (5, 7)]"),
 ]
 
