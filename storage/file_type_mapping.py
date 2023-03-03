@@ -7,11 +7,19 @@ from storage.exceptions import UnsupportedFileType
 from storage.txt import TxtFileReader, TxtFileWriter
 
 
-class FileType(str, Enum):
+class FileType(Enum):
     TXT = "txt"
 
     @classmethod
     def from_path(cls, path: str) -> FileType:
+        """
+        Get Enum member based on file path.
+
+        :param str path: File path
+        :return: FileType member
+        :rtype: Filetype
+        """
+
         file_extension = cls._get_file_extension_from_path(path)
         try:
             file_type = cls(file_extension)

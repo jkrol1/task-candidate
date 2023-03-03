@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from typing import Generator, List
+from typing import List
 
 import pytest
 from _pytest.capture import CaptureFixture

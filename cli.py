@@ -5,12 +5,14 @@ from config import DEFAULT_STRATEGY, DEFAULT_TARGET_SUM, STRATEGIES
 
 
 class TargetSumAction(Action):
+    """Custom action for parsing target sum argument from CLI."""
+
     def __call__(
-        self,
-        parser: ArgumentParser,
-        namespace: Namespace,
-        values: Union[str, Sequence, None],
-        option_string: Optional[str] = None,
+            self,
+            parser: ArgumentParser,
+            namespace: Namespace,
+            values: Union[str, Sequence, None],
+            option_string: Optional[str] = None,
     ) -> None:
         target_sum = self._get_target_sum_from_values_or_raise_parser_error(
             values, parser
@@ -31,6 +33,13 @@ class TargetSumAction(Action):
 
 
 def create_cli_parser() -> ArgumentParser:
+    """
+    ArgumentParser factory
+
+    :return: CLI argument parser
+    :rtype: ArgumentParser
+    """
+
     parser = ArgumentParser(
         description="Application for finding pairs of natural numbers which add up to specified target sum"
     )
