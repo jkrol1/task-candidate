@@ -1,5 +1,9 @@
-from algorithm.strategies.base import (AlgorithmInput, AlgorithmOutput,
-                                       IStrategy, create_pair_from_values)
+from algorithm.strategies.base import (
+    AlgorithmInput,
+    AlgorithmOutput,
+    IStrategy,
+    create_pair_from_values,
+)
 
 
 class SortingStrategy(IStrategy):

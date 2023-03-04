@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Any, Optional
+from typing import Any, List, Optional
 
 from algorithm.strategies import SortingStrategy, SubtractionStrategy
 
@@ -22,8 +22,8 @@ class BaseEnum(Enum):
     def _missing_(cls, name) -> Optional[BaseEnum]:
         for member in cls:
             if (
-                    member.name.lower() == name.lower()
-                    or member.name.upper() == name.upper()
+                member.name.lower() == name.lower()
+                or member.name.upper() == name.upper()
             ):
                 return member
 

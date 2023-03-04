@@ -9,8 +9,11 @@ from input.parser import parse_comma_separated_input_data
 from input.validator import Validator
 from output.converter import convert_algorithm_output_to_str
 from storage.base import IFileReader, IFileWriter
-from storage.file_type_mapping import (FileType, FileTypeReaderMapping,
-                                       FileTypeWriterMapping)
+from storage.file_type_mapping import (
+    FileType,
+    FileTypeReaderMapping,
+    FileTypeWriterMapping,
+)
 
 
 @dataclass
@@ -68,11 +71,11 @@ class App:
     """
 
     def __init__(
-            self,
-            reader: IFileReader,
-            writer: IFileWriter,
-            context: Context,
-            strategy: IStrategy,
+        self,
+        reader: IFileReader,
+        writer: IFileWriter,
+        context: Context,
+        strategy: IStrategy,
     ) -> None:
         self._reader = reader
         self._writer = writer

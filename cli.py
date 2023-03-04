@@ -8,11 +8,11 @@ class TargetSumAction(Action):
     """Custom action for parsing target sum argument from CLI."""
 
     def __call__(
-            self,
-            parser: ArgumentParser,
-            namespace: Namespace,
-            values: Union[str, Sequence, None],
-            option_string: Optional[str] = None,
+        self,
+        parser: ArgumentParser,
+        namespace: Namespace,
+        values: Union[str, Sequence, None],
+        option_string: Optional[str] = None,
     ) -> None:
         target_sum = self._get_target_sum_from_values_or_raise_parser_error(
             values, parser

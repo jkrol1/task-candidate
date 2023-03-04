@@ -11,7 +11,7 @@ class IStrategy(ABC):
 
     @abstractmethod
     def get_pairs_from_algorithm_input_and_target_sum(
-            self, algorithm_input: AlgorithmInput, target_sum: int
+        self, algorithm_input: AlgorithmInput, target_sum: int
     ) -> AlgorithmOutput:
         """
         Searches for pairs of natural numbers which add up to specified target sum.
