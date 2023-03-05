@@ -3,7 +3,19 @@ from typing import Dict
 from algorithm.strategies import AbstractStrategy, AlgorithmInput, AlgorithmOutput
 
 
-class SubtractionStrategy(AbstractStrategy):
+class SubtractionDictStrategy(AbstractStrategy):
+    """
+    SubtractionDictStrategy algorithm steps:
+
+        1) At each iteration step over algorithm input, values
+           are added to the value_idx_mapping dictionary which maps
+           values to their indexes in original algorithm input list.
+        2) Check if value of difference between target_sum and current iteration
+           value already exists in the value_idx_mapping dictionary. If it
+           exists and was not used to form a pair, then new pair is formed
+           and appended to the found_pairs list
+    """
+
     def get_pairs(
         self, algorithm_input: AlgorithmInput, target_sum: int
     ) -> AlgorithmOutput:

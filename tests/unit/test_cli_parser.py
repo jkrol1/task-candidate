@@ -13,7 +13,7 @@ ARGS_EXPECTED_ERROR_MSG = [
     ),
     (
         ["-t", "15", "-s", "dummy"],
-        "argument -s/--strategy: invalid choice: 'dummy' (choose from 'sorting', 'subtraction')",
+        "argument -s/--strategy: invalid choice: 'dummy' (choose from 'sorting', 'subtraction_dict')",
     ),
     (["-t", "dummy"], "argument -t/--target-sum: invalid int value: 'dummy'"),
     (["-t", "10.5"], "argument -t/--target-sum: invalid int value: '10.5'"),

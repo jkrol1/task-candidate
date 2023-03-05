@@ -5,6 +5,25 @@ from algorithm.strategies.base import Pair
 
 
 class SortingStrategy(AbstractStrategy):
+    """
+    SortingStrategy algorithm steps:
+
+        1) Sort algorithm input in ascending order
+        2) Control search space by using lower_idx and higher_idx.
+           At the begging, lower_idx is set to 0 and higher_idx
+           is set to the last algorithm input element's index
+        3) At each iteration step check if elements at lower_idx and
+           higher_idx sum to desired target_sum:
+
+           - If sum of elements equals target_sum then pair is added to
+             the found_pairs list, lower_idx is incremented by one and higher_idx
+             is decremented by 1
+           - If sum of elements is less than target_sum then lower_idx is incremented
+             by one
+           - If sum of elements is greater than target_sum then higher_idx is
+             decremented by one
+    """
+
     def get_pairs(
         self, algorithm_input: AlgorithmInput, target_sum: int
     ) -> AlgorithmOutput:

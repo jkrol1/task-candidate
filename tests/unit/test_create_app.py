@@ -9,7 +9,7 @@ def test_create_app() -> None:
         input_file_type=FileType.TXT,
         output_file_path="output.txt",
         output_file_type=FileType.TXT,
-        strategy=Strategy.SUBTRACTION,
+        strategy=Strategy.SUBTRACTION_DICT,
         target_sum=12,
     )
     app = create_app(context)

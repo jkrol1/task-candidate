@@ -3,7 +3,11 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Type
 
-from algorithm.strategies import AbstractStrategy, SortingStrategy, SubtractionStrategy
+from algorithm.strategies import (
+    AbstractStrategy,
+    SortingStrategy,
+    SubtractionDictStrategy,
+)
 
 
 class BaseEnum(Enum):
@@ -32,10 +36,10 @@ class BaseEnum(Enum):
 
 class Strategy(BaseEnum):
     SORTING = "sorting"
-    SUBTRACTION = "subtraction"
+    SUBTRACTION_DICT = "subtraction_dict"
 
 
 StrategyMapping: Dict[Strategy, Type[AbstractStrategy]] = {
     Strategy.SORTING: SortingStrategy,
-    Strategy.SUBTRACTION: SubtractionStrategy,
+    Strategy.SUBTRACTION_DICT: SubtractionDictStrategy,
 }

@@ -4,7 +4,7 @@ from algorithm.strategies import (
     AlgorithmInput,
     AlgorithmOutput,
     SortingStrategy,
-    SubtractionStrategy,
+    SubtractionDictStrategy,
 )
 
 SUBTRACTION_STRATEGY_ALGORITHM_INPUT_OUTPUT_TARGET_SUM = [
@@ -73,7 +73,7 @@ def test_subtraction_strategy(
     expected_algorithm_output: AlgorithmOutput,
     target_sum: int,
 ) -> None:
-    strategy = SubtractionStrategy()
+    strategy = SubtractionDictStrategy()
     algorithm_output = strategy.get_pairs(algorithm_input, target_sum)
 
     assert algorithm_output == expected_algorithm_output
