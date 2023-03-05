@@ -32,8 +32,7 @@ format: $(INSTALL_STAMP)
 
 .PHONY: test
 test: $(INSTALL_STAMP)
-		$(POETRY) run pytest ./tests/
-		$(POETRY) run pytest --cov
+		$(POETRY) run pytest ./tests/ --cov
 
 .PHONY: clean
 clean:
