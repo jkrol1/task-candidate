@@ -46,7 +46,8 @@ def create_cli_parser() -> ArgumentParser:
     parser.add_argument(
         "-i",
         "--input-file-path",
-        help="File path to application's input",
+        help="File path to application's input. "
+        "Input has to be in .txt format and it has to consist of natural numbers separated by comma",
         required=True,
     )
     parser.add_argument(
