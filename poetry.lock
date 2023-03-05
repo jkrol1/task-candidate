@@ -274,7 +274,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "pytest"
-version = "7.2.1"
+version = "7.2.2"
 description = "pytest: simple powerful testing with Python"
 category = "dev"
 optional = false
@@ -385,8 +385,8 @@ python-versions = ">=3.7"
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.8.1,<3.8.9"
-content-hash = "694b0639863d7b74c33ae68294d4242c0734a1cd9222e3531ae108e2975b7eaf"
+python-versions = ">=3.8.1,<3.8.16"
+content-hash = "1d580ae7f8b35fb7bbcdcd7afdc194a04ae642eb4c927e71710a142458b4139d"
 
 [metadata.files]
 attrs = []
