@@ -34,7 +34,7 @@ class TargetSumAction(Action):
 
 def create_cli_parser() -> ArgumentParser:
     """
-    ArgumentParser factory
+    ArgumentParser factory.
 
     :return: CLI argument parser
     :rtype: ArgumentParser

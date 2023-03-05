@@ -3,16 +3,19 @@ from __future__ import annotations
 from argparse import Namespace
 from dataclasses import dataclass
 
-from algorithm.strategies import IStrategy
+from algorithm.strategies import AbstractStrategy
 from algorithm.strategy_mapping import Strategy, StrategyMapping
-from input.parser import parse_comma_separated_input_data
-from input.validator import Validator
-from output.converter import convert_algorithm_output_to_str
-from storage.base import IFileReader, IFileWriter
+from algorithm.validation import is_algorithm_input_valid
+from storage.base import (
+    IAlgorithmOutputConverter,
+    IFileInputParser,
+    IFileReader,
+    IFileWriter,
+)
 from storage.file_type_mapping import (
     FileType,
-    FileTypeReaderMapping,
-    FileTypeWriterMapping,
+    FileTypeToReadHandlersMapping,
+    FileTypeToWriteHandlersMapping,
 )
 
 
@@ -39,7 +42,7 @@ class Context:
     @classmethod
     def from_parsed_cli_args(cls, parsed_args: Namespace) -> Context:
         """
-        Creates Context from parsed CLI Arguments
+        Creates Context from parsed CLI Arguments.
 
         :param Namespace parsed_args: Parsed CLI arguments
         :return: Application context
@@ -65,19 +68,25 @@ class App:
     Application controller class.
 
     :param IFileReader reader: Concrete reader responsible for reading input file
-    :param IFileWriter reader: Concrete writer responsible for writing algorithm output to file
+    :param IFileInputParser parser: File content parser
+    :param IAlgorithmOutputConverter converter: Converts algorithm output into writable format
+    :param IFileWriter writer: Concrete writer responsible for writing converted algorithm output to file
     :param Context context: Application context
-    :param IStrategy strategy: Chosen strategy for computation
+    :param AbstractStrategy strategy: Chosen strategy for computation
     """
 
     def __init__(
         self,
         reader: IFileReader,
+        parser: IFileInputParser,
+        converter: IAlgorithmOutputConverter,
         writer: IFileWriter,
         context: Context,
-        strategy: IStrategy,
+        strategy: AbstractStrategy,
     ) -> None:
         self._reader = reader
+        self._parser = parser
+        self._converter = converter
         self._writer = writer
         self._context = context
         self._strategy = strategy
@@ -89,30 +98,39 @@ class App:
         :return:
         """
 
-        algorithm_input = self._reader.read(self._context.input_file_path)
-        Validator(algorithm_input, self._context.target_sum).validate()
-        algorithm_output = self._strategy.get_pairs_from_algorithm_input_and_target_sum(
-            algorithm_input, self._context.target_sum
-        )
-        self._writer.write(self._context.output_file_path, algorithm_output)
+        file_contents = self._reader.read(self._context.input_file_path)
+        algorithm_input = self._parser.parse(file_contents)
+        if is_algorithm_input_valid(algorithm_input, self._context.target_sum):
+            algorithm_output = self._strategy.get_pairs(
+                algorithm_input, self._context.target_sum
+            )
+            converted_algorithm_output = self._converter.convert(algorithm_output)
+            self._writer.write(
+                self._context.output_file_path, converted_algorithm_output
+            )
+            print(
+                f"Application run has been completed successfully. Number of found pairs: {len(algorithm_output)}"
+            )
 
 
 def create_app(context: Context) -> App:
     """
-    Application factory
+    Application factory.
 
     :param Context context: Application context
     :return: App instance
     :rtype: App
     """
 
-    reader = FileTypeReaderMapping[context.input_file_type]
-    writer = FileTypeWriterMapping[context.output_file_type]
+    read_handlers = FileTypeToReadHandlersMapping[context.input_file_type]
+    write_handlers = FileTypeToWriteHandlersMapping[context.output_file_type]
     strategy = StrategyMapping[context.strategy]
 
     app = App(
-        reader=reader(parsing_function=parse_comma_separated_input_data),
-        writer=writer(converting_function=convert_algorithm_output_to_str),
+        reader=read_handlers.reader(),
+        parser=read_handlers.parser(),
+        converter=write_handlers.converter(),
+        writer=write_handlers.writer(),
         context=context,
         strategy=strategy(),
     )

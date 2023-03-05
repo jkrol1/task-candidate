@@ -34,7 +34,7 @@ per-file-ignores = [
 exclude_dirs = ["tests"]
 
 [tool.black]
-exclude = 'tests/unit/algorithm/test_strategies.py.py'
+exclude = 'tests/unit/algorithm/test_strategies.py'
 
 
 [build-system]
