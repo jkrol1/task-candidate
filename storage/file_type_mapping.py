@@ -1,10 +1,35 @@
 from __future__ import annotations
 
 import os
+from dataclasses import dataclass
 from enum import Enum
+from typing import Type
 
+from storage.base import (
+    IAlgorithmOutputConverter,
+    IFileInputParser,
+    IFileReader,
+    IFileWriter,
+)
 from storage.exceptions import UnsupportedFileType
-from storage.txt import TxtFileReader, TxtFileWriter
+from storage.txt import (
+    AlgorithmOutputToTxtConverter,
+    TxtFileInputParser,
+    TxtFileReader,
+    TxtFileWriter,
+)
+
+
+@dataclass
+class ReadHandlers:
+    reader: Type[IFileReader]
+    parser: Type[IFileInputParser]
+
+
+@dataclass
+class WriteHandlers:
+    writer: Type[IFileWriter]
+    converter: Type[IAlgorithmOutputConverter]
 
 
 class FileType(Enum):
@@ -34,5 +59,11 @@ class FileType(Enum):
         return file_extension
 
 
-FileTypeReaderMapping = {FileType.TXT: TxtFileReader}
-FileTypeWriterMapping = {FileType.TXT: TxtFileWriter}
+FileTypeToReadHandlersMapping = {
+    FileType.TXT: ReadHandlers(reader=TxtFileReader, parser=TxtFileInputParser)
+}
+FileTypeToWriteHandlersMapping = {
+    FileType.TXT: WriteHandlers(
+        writer=TxtFileWriter, converter=AlgorithmOutputToTxtConverter
+    )
+}

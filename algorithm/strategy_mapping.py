@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional, Type
 
-from algorithm.strategies import SortingStrategy, SubtractionStrategy
+from algorithm.strategies import AbstractStrategy, SortingStrategy, SubtractionStrategy
 
 
 class BaseEnum(Enum):
     @classmethod
     def values_to_list(cls) -> List[Any]:
         """
-        Creates list from Enum's values
+        Creates list from Enum's values.
 
         :return: List of Enum's values
         :rtype: List[Any]
@@ -35,7 +35,7 @@ class Strategy(BaseEnum):
     SUBTRACTION = "subtraction"
 
 
-StrategyMapping = {
+StrategyMapping: Dict[Strategy, Type[AbstractStrategy]] = {
     Strategy.SORTING: SortingStrategy,
     Strategy.SUBTRACTION: SubtractionStrategy,
 }

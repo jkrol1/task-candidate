@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
+from typing import Generic
 
-from algorithm.strategies.base import AlgorithmOutput
+from storage.base.type import IOType
 
 
-class IFileWriter(ABC):
-    """FileWriter Interface"""
+class IFileWriter(ABC, Generic[IOType]):
+    """FileWriter Interface."""
 
     @abstractmethod
-    def write(self, path: str, data: AlgorithmOutput) -> None:
+    def write(self, path: str, data: IOType) -> None:
         """
-        Write algorithm output to file in specified path
+        Write algorithm output to file in specified path.
 
         :param str path: File path
         :param AlgorithmOutput data: Algorithm output
