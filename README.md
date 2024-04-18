@@ -1,4 +1,6 @@
-Jan Król
+The idea of the application is to take input numbers and produce pairs of numbers that sum to a specific number, then save them to a file.
+
+Although the idea is simple, I've tried to make it as modular and extensible as possible in order to add new file formats and algorithms easily.
 
 # How to run
 1. Install poetry
